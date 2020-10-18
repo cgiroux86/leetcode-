@@ -5,7 +5,6 @@ class Solution:
         i, j = 0, 0
         while i < len(rowSum) and j < len(colSum):
             selection = min(rowSum[i], colSum[j])
-            print(selection)
             res[i][j] = selection
             rowSum[i] -= selection
             colSum[j] -= selection
