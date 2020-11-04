@@ -4,7 +4,6 @@ class Solution:
         blue = 0
         for i in range(len(light)):
             total += (light[i] - 1)
-
             if total % (i + 1) == 0:
                 blue += 1
         print(blue - 1)
