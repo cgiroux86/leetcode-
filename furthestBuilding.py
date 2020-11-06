@@ -53,31 +53,25 @@ class Solution:
         return result
 
     def maxTurbulenceSize(self, A: List[int]) -> int:
-        L, R = 0, 1
-        sign = None
+        L, R = 0, 2
+        sign = 1 if A[1] > A[0] else 0
         res = 0
         while L < R < len(A):
-            print(A[L:R + 1], sign)
-            if sign == None:
-                sign = 1 if A[R] > A[R - 1] else 0
-
-                continue
-            elif sign == 1 and A[R] < A[R - 1] or sign == 0 and A[R] > A[R - 1] or A[R] == A[R - 1]:
+            if sign == 1 and A[R] > A[R - 1] or sign == 0 and A[R] < A[R - 1] or A[R] == A[R - 1]:
                 print(A[R], A[R - 1])
-                res = max(res, R - L + 1)
+                res = max(res, R - L)
                 sign = 1 if A[R] > A[R - 1] else 0
-                L = R
+                L = R - 1
                 R += 1
 
             else:
                 sign = 1 if A[R] > A[R - 1] else 0
-                L += 1
                 R += 1
             print(sign)
 
-        res = max(res, R - L + 1)
+        res = max(res, R - L)
         return res
 
 
 s = Solution()
-print(s.maxTurbulenceSize([9, 4, 2, 10, 7, 8, 8, 1, 9]))
+print(s.maxTurbulenceSize([4, 8, 12, 16]))
